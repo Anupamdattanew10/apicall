@@ -8,7 +8,7 @@ import pandas as pd
 k=0
 namedata=[]
 emaildata=[]
-for j in range (1,400):
+for j in range (400):
     url="https://api.github.com/repos/laravel/laravel/stargazers?per_page=100&page="+str(j)
     responce=requests.get(url,headers={'Authorization': 'a631efb5a58c7fb9d2e509384f13146058b4b1f0'})
     k+=1
@@ -34,18 +34,10 @@ for j in range (1,400):
             print('inside if')
             emaildata.append(str(e.group(0)))
             namedata.append(str(data["name"]))
-                
-        if k>25:
-            break
-
-    if k>25:
-        break
-    
+            print(k)    
 
 d={'name':namedata,'email':emaildata}
 df = pd.DataFrame(d)
-
-print(d)
 # saving the dataframe 
 df.to_csv('file1.csv') 
 print("done")
